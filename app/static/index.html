@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brickpile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='10' width='28' height='18' rx='3' fill='%23d6402b'/%3E%3Crect x='7' y='5' width='7' height='6' rx='2' fill='%23d6402b'/%3E%3Crect x='18' y='5' width='7' height='6' rx='2' fill='%23d6402b'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="logo"><span class="studs"><i></i><i></i></span>Brickpile</div>
+    <nav class="steps" id="steps">
+      <span data-step="upload" class="on">1 · Photo</span>
+      <span data-step="review">2 · Check pieces</span>
+      <span data-step="results">3 · Build</span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="banner" class="banner" hidden></div>
+
+  <!-- 1. Upload -->
+  <section id="view-upload" class="view">
+    <h1>What can you build from your pile?</h1>
+    <p class="lead">Spread your bricks out, take a photo from above, and Brickpile identifies each piece, finds official sets you can (almost) build, and suggests original builds.</p>
+
+    <div class="grid-2">
+      <div>
+        <label id="drop" class="drop" for="file">
+          <input id="file" type="file" accept="image/*" multiple hidden>
+          <div class="drop-icon">＋</div>
+          <div><strong>Add photos</strong> or drop them here</div>
+          <div class="muted small" id="drop-limit">Up to 6 photos for a big pile</div>
+        </label>
+        <div id="thumbs" class="thumbs"></div>
+        <button id="go" class="btn primary big" disabled>Find pieces</button>
+      </div>
+      <aside class="tips card">
+        <h3>For the best results</h3>
+        <ul>
+          <li><b>Plain background</b> that contrasts with your bricks: a grey or dark sheet works for most colours.</li>
+          <li><b>No touching</b>: leave a gap around every piece. Touching pieces are counted as one.</li>
+          <li><b>Straight above</b>, evenly lit, no harsh shadows or flash glare.</li>
+          <li><b>Fill the frame</b>, and keep the table edge out of the photo.</li>
+          <li>Tiny parts? Take a closer photo of just those.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- progress -->
+  <section id="view-progress" class="view" hidden>
+    <div class="card center pad-lg">
+      <h2 id="prog-title">Finding pieces…</h2>
+      <div class="bar"><div id="prog-bar"></div></div>
+      <p class="muted" id="prog-text">Looking at your photo</p>
+    </div>
+  </section>
+
+  <!-- 2. Review -->
+  <section id="view-review" class="view" hidden>
+    <div class="head-row">
+      <div>
+        <h1>Check your pieces</h1>
+        <p class="lead">Fix anything that's wrong. Colour is the most common mistake, so give that a quick look.</p>
+      </div>
+      <div class="actions">
+        <button id="restart" class="btn">New photo</button>
+        <button id="to-results" class="btn primary">Find builds →</button>
+      </div>
+    </div>
+    <div id="warn" class="banner warn" hidden></div>
+
+    <div class="review-layout">
+      <div>
+        <div class="filter-row">
+          <label class="chk"><input type="checkbox" id="only-unsure"> Show uncertain only</label>
+          <span class="muted small" id="piece-count"></span>
+        </div>
+        <div id="pieces" class="pieces"></div>
+      </div>
+      <aside class="card inv">
+        <h3>Inventory <span class="muted" id="inv-total"></span></h3>
+        <div id="inv-list" class="inv-list"></div>
+        <details class="add">
+          <summary>Add a part by number</summary>
+          <div class="add-row">
+            <input id="add-part" placeholder="Part no. e.g. 3001">
+            <select id="add-color"></select>
+            <input id="add-qty" type="number" min="1" value="1">
+            <button id="add-btn" class="btn">Add</button>
+          </div>
+        </details>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3. Results -->
+  <section id="view-results" class="view" hidden>
+    <div class="head-row">
+      <div>
+        <h1>Things to build</h1>
+        <p class="lead" id="res-lead"></p>
+      </div>
+      <div class="actions"><button id="back-review" class="btn">← Pieces</button></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-tab="sets">Official sets</button>
+      <button class="tab" data-tab="ideas" id="tab-ideas">Ideas</button>
+    </div>
+
+    <div id="tab-sets">
+      <div class="filter-row">
+        <div class="seg" id="mode">
+          <button data-mode="color" class="on">Matching colours</button>
+          <button data-mode="shape">Any colour</button>
+        </div>
+        <span class="muted small">Any colour finds more, if you don't mind a rainbow build.</span>
+      </div>
+      <div id="sets" class="sets"></div>
+    </div>
+
+    <div id="tab-ideasp" hidden>
+      <div class="card idea-form">
+        <input id="audience" placeholder="Optional: who's building? e.g. 7-year-old who loves space">
+        <button id="ideas-go" class="btn primary">Suggest builds</button>
+      </div>
+      <div id="ideas" class="ideas"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot muted small">
+  Part recognition by Brickognize · set data by Rebrickable · ideas by Claude. LEGO® is a trademark of the LEGO Group, which does not sponsor this site.
+</footer>
+
+<template id="t-piece">
+  <div class="piece">
+    <img loading="lazy" alt="">
+    <div class="pbody">
+      <select class="pcand"></select>
+      <div class="prow">
+        <span class="swatch"></span>
+        <select class="pcolor"></select>
+      </div>
+      <label class="chk small"><input type="checkbox" class="pinc"> Include</label>
+    </div>
+  </div>
+</template>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
