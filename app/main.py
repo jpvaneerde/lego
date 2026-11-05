@@ -17,9 +17,9 @@ from .colors import Palette
 from .segment import decode_image, preview_jpeg, segment
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
-log = logging.getLogger("brickpile")
+log = logging.getLogger("lego")
 
-app = FastAPI(title="Brickpile")
+app = FastAPI(title="lego.jplay")
 STATIC = Path(__file__).parent / "static"
 app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
@@ -150,7 +150,7 @@ async def run_job(jid: str, blobs: list[bytes]) -> None:
         sem = asyncio.Semaphore(config.BRICKOGNIZE_CONCURRENCY)
         failures = 0
 
-        async with httpx.AsyncClient(headers={"User-Agent": "brickpile/1.0"}) as client:
+        async with httpx.AsyncClient(headers={"User-Agent": "lego.jplay/1.0"}) as client:
             async def one(idx: int, photo_idx: int, piece):
                 nonlocal failures
                 async with sem:

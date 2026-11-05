@@ -1,6 +1,6 @@
-# Brickpile — lego.jplay.cloud
+# lego.jplay — lego.jplay.cloud
 
-Upload photos of loose bricks spread out on a plain background. Brickpile
+Upload photos of loose bricks spread out on a plain background. lego.jplay
 finds each piece (OpenCV), identifies it (Brickognize), estimates its colour,
 lets you correct the inventory, then ranks official sets by how much of each
 your pile covers (Rebrickable catalog, local SQLite) and asks Claude for

@@ -3,16 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brickpile</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>lego.jplay</title>
+<meta name="theme-color" content="#0f111a">
 <link rel="stylesheet" href="/static/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='10' width='28' height='18' rx='3' fill='%23d6402b'/%3E%3Crect x='7' y='5' width='7' height='6' rx='2' fill='%23d6402b'/%3E%3Crect x='18' y='5' width='7' height='6' rx='2' fill='%23d6402b'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
 </head>
 <body>
 <header class="top">
   <div class="wrap top-inner">
-    <div class="logo"><span class="studs"><i></i><i></i></span>Brickpile</div>
+    <a class="logo" href="/" aria-label="lego.jplay">
+      <svg viewBox="0 0 206 44" role="img" aria-label="lego.jplay">
+        <g fill="var(--accent)">
+          <rect x="2" y="26" width="30" height="12" rx="2.5"/><rect x="6" y="22.5" width="6" height="4" rx="1.5"/><rect x="22" y="22.5" width="6" height="4" rx="1.5"/>
+          <rect x="7" y="12" width="20" height="12" rx="2.5" opacity=".75"/><rect x="11" y="8.5" width="5" height="4" rx="1.5" opacity=".75"/><rect x="18" y="8.5" width="5" height="4" rx="1.5" opacity=".75"/>
+        </g>
+        <text x="42" y="35" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="32" font-weight="800" letter-spacing="-0.5" fill="currentColor">lego<tspan fill="var(--accent)">.jplay</tspan></text>
+      </svg>
+    </a>
     <nav class="steps" id="steps">
       <span data-step="upload" class="on">1 · Photo</span>
       <span data-step="review">2 · Check pieces</span>
@@ -27,7 +34,7 @@
   <!-- 1. Upload -->
   <section id="view-upload" class="view">
     <h1>What can you build from your pile?</h1>
-    <p class="lead">Spread your bricks out, take a photo from above, and Brickpile identifies each piece, finds official sets you can (almost) build, and suggests original builds.</p>
+    <p class="lead">Spread your bricks out, take a photo from above, and lego.jplay identifies each piece, finds official sets you can (almost) build, and suggests original builds.</p>
 
     <div class="grid-2">
       <div>
